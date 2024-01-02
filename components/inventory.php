@@ -29,10 +29,10 @@ $equipment = $controllers->equipment()->get_all_equipments();
                     <p class= "text-muted">Access will be denied for regular users</p>
                 </li>
                 <li class="nav-item mb-4">
-                <a href="#" class="btn btn-primary">Add Inventory</a>
+                <a href="./add-inventory.php" class="btn btn-primary">Add Inventory</a>
                 </li>
                 <li class="nav-item mb-4">
-                <a href="#" class="btn btn-primary">Remove Inventory</a>
+                <a href="./inventory-removal.php" class="btn btn-primary">Remove Inventory</a>
                 </li>
                 <li class="nav-item mb-4">
                 <a href="#" class="btn btn-primary">Manage Suppliers</a>
