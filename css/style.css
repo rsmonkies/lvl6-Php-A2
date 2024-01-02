@@ -1,0 +1,7 @@
+  /* Custom styles for the navigation column */
+  .nav-column {
+    border: 1px solid #ccc; /* Add a 1px solid border with a light gray color */
+    border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+    padding: 10px; /* Optional: Add padding for better appearance */
+    background-color: #f8f9fa; /* Optional: Add a light background color */
+}
