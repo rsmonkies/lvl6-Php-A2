@@ -70,7 +70,7 @@ class MemberController {
                     VALUES (:firstname, :lastname, :email, :password)"; 
 
             // Execute the query with the provided member data
-            $this->db->runSQL($sql, $member)->execute();
+            $this->db->runSQL($sql, $member);
             return true;
 
         } catch (PDOException $e) {
@@ -95,6 +95,16 @@ class MemberController {
             return $auth ? $member : false;
         }
         return false;
+    }
+
+    public function getUserRoles($userId) {
+        // Retrieve user roles from the database based on the user ID
+        $stmt = $this->db->prepare("SELECT roles.name FROM roles INNER JOIN user_roles ON roles.id = user_roles.role_id WHERE user_roles.user_id = :userId");
+        $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+        $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $roles;
     }
 
 

@@ -24,31 +24,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     // If valid, attempt to log in the member
     if ($valid) {
-  
       // Call the login function from the member controller
       $member = $controllers->members()->login_member($email['value'], $password['value']);
-
+  
       // Check if login was successful
       if (!$member) {
-        // Set error message if login failed
-        $message = "User details are incorrect.";
-     } else {
-         // Set user session data on successful login
-         $_SESSION['user'] = $member;
-
-         // Redirect based on user type
-         if ($member['user_type'] === 'admin') {
-          redirect('.\Inventory.php'); // Redirect admin users
+          // Set error message if login failed
+          $message = "User details are incorrect.";
       } else {
-          redirect('member'); // Redirect non-admin users
+          // Set user session data on successful login
+          $_SESSION['user'] = $member;
+  
+          // Retrieve user roles from the database
+          $userRoles = $controllers->members()->getUserRoles($member['ID']);
+  
+          // Extract role names from the user roles
+          $roleNames = array_column($userRoles, 'name');
+  
+          // Set 'user_type' in the session based on roles
+          if (in_array('admin', $roleNames)) {
+              $_SESSION['user_type'] = 'admin';
+          } else {
+              $_SESSION['user_type'] = 'regular';
+          }
+  
+          // Redirect based on user type
+          if ($_SESSION['user_type'] === 'admin') {
+              redirect('./Inventory'); // Redirect admin users
+          } else {
+              redirect('member'); // Redirect regular users
+          }
       }
-      }
-
-    }
-    else {
-       // Set error message for invalid input
-       $message =  "Please fix the above errors. ";
-   }
+  }
 
 } 
 ?>
