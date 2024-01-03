@@ -28,10 +28,22 @@
       <li class="nav-item">
         <a class="nav-link" href="./Inventory.php">Inventory</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./login.php">Login</a>
-      </li>
     </ul>
+    <?php if (isset($_SESSION['user'])): ?>
+            <!-- Display Logout button when user is logged in -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="./logout.php">Logout</a>
+                </li>
+            </ul>
+        <?php else: ?>
+            <!-- Display Login button when user is not logged in -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="./login.php">Login</a>
+                </li>
+            </ul>
+        <?php endif; ?>
   </div>
 </nav>
 

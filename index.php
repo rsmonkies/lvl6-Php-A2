@@ -1,3 +1,7 @@
+<?php 
+
+session_start();
+?>
 <?php require __DIR__ . "/inc/header.php"; ?>
      
 <section id= "Landing-page" style="padding-top: 20px; padding-bottom: 20px;">
