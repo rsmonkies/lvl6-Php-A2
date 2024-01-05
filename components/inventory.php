@@ -29,6 +29,9 @@ require_once './inc/functions.php';
                         <a href="./add-inventory.php" class="btn btn-primary">Add Inventory</a>
                     </li>
                     <li class="nav-item mb-4">
+                        <a href="./edit-inventory.php" class="btn btn-primary">Edit Current Inventory</a>
+                    </li>
+                    <li class="nav-item mb-4">
                         <a href="./inventory-removal.php" class="btn btn-primary">Remove Inventory</a>
                     </li>
                     <li class="nav-item mb-4">
