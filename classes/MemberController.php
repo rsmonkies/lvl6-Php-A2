@@ -107,6 +107,19 @@ class MemberController {
         return $roles;
     }
 
+    public function get_all_members_with_roles()
+{
+    // SQL query to select all members and their roles
+    $sql = "SELECT users.*, GROUP_CONCAT(roles.name) AS role_names
+            FROM users
+            LEFT JOIN user_roles ON users.id = user_roles.user_id
+            LEFT JOIN roles ON user_roles.role_id = roles.id
+            GROUP BY users.id";
+
+    // Execute the query and return all fetched records with roles
+    return $this->db->runSQL($sql)->fetchAll();
+}
+
 
 }
 

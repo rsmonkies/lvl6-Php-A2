@@ -63,7 +63,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'edit' && isset($_GET['id'])) {
                                         value="<?= htmlspecialchars($equipmentDetails['image']) ?>">
                                 </div>
 
-                                <button type="submit" class="btn btn-success">Update Equipment</button>
+                                <button type="submit" class="btn btn-success">Update Inventory</button>
                             </form>
                         </div>
                     </div>

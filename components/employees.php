@@ -38,7 +38,7 @@ require_once './inc/functions.php';
                         <a href="#" class="btn btn-primary">Manage Suppliers</a>
                     </li>
                     <li class="nav-item mb-4">
-                        <a href="./Employees.php" class="btn btn-primary">Employees</a>
+                        <a href="#" class="btn btn-primary">Employees</a>
                     </li>
             </ul>
         </div>
@@ -47,27 +47,28 @@ require_once './inc/functions.php';
         <!-- Inventory container -->
         <div class="col-md-9">
             <div class="container mt-4">
-                <h2>Inventory</h2>
+                <h2>Employees</h2>
                 <?php
-                // Retrieve all equipment data using the equipment controller
-                $equipment = $controllers->equipment()->get_all_equipments();
+                // Retrieve all members with roles data using the updated method
+                    $users = $controllers->members()->get_all_members_with_roles();
 
-                // Display equipment data
-                if (!empty($equipment)) {
-                    echo '<table class="table table-striped">';
-                    echo '<thead><tr><th>Image</th><th>Name</th><th>Description</th></tr></thead>';
-                    echo '<tbody>';
-                    foreach ($equipment as $equip) {
-                        echo '<tr>';
-                        echo '<td><img src="' . htmlspecialchars($equip['image']) . '" alt="Image of ' . htmlspecialchars($equip['description']) . '" style="width: 100px; height: auto;"></td>';
-                        echo '<td>' . htmlspecialchars($equip['name']) . '</td>';
-                        echo '<td>' . htmlspecialchars($equip['description']) . '</td>';
-                        echo '</tr>';
+                    // Display members with roles data
+                    if (!empty($users)) {
+                        echo '<table class="table table-striped">';
+                        echo '<thead><tr><th>Id</th><th>Name</th><th>Email</th><th>Roles</th></tr></thead>';
+                        echo '<tbody>';
+                        foreach ($users as $user) {
+                            echo '<tr>';
+                            echo '<td>' . htmlspecialchars($user['ID']) . '</td>';
+                            echo '<td>' . htmlspecialchars($user['firstname']) . '</td>';
+                            echo '<td>' . htmlspecialchars($user['email']) . '</td>';
+                            echo '<td>' . htmlspecialchars($user['role_names']) . '</td>';
+                            echo '</tr>';
+                        }
+                        echo '</tbody></table>';
+                    } else {
+                        echo '<p>No Employees registered.</p>';
                     }
-                    echo '</tbody></table>';
-                } else {
-                    echo '<p>No inventory available.</p>';
-                }
                 ?>
             </div>
         </div>

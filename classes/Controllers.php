@@ -20,7 +20,7 @@ class Controllers {
 
         // Database credentials
         $username = 'root'; // Default MySQL username
-        $password = 'root'; // Empty password (not recommended for production)
+        $password = ''; // Empty password (not recommended for production)
 
         // Data Source Name (DSN) for PDO connection
         $dsn = "$type:host=$server;dbname=$db;port=$port;charset=$charset";
