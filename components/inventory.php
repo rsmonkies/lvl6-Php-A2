@@ -12,6 +12,7 @@ require_once './inc/functions.php';
         border-radius: 5px;
         padding: 20px;
         background-color: #f8f9fa;
+        height: 100%; /* Set the height to 100% */
     }
 </style>
 <?php  if ($_SESSION['user_type'] === 'admin') {?>
@@ -21,24 +22,18 @@ require_once './inc/functions.php';
         <div class="col-md-3 nav-column">
             <ul class="nav flex-column mt-4">
                 <li>
-                    <h3>Admin?</h3>
+                    <h3>Admin dashboard</h3>
                     <p>Use these links below for extra features</p>
                     <p class="text-muted">Access will be denied for regular users</p>
                 </li>
                     <li class="nav-item mb-4">
-                        <a href="./add-inventory.php" class="btn btn-primary">Add Inventory</a>
+                        <a href="./edit-inventory.php" class="btn btn-primary">Inventory Management</a>
                     </li>
                     <li class="nav-item mb-4">
-                        <a href="./edit-inventory.php" class="btn btn-primary">Edit Current Inventory</a>
+                        <a href="./Employees.php" class="btn btn-primary">Employee Management</a>
                     </li>
                     <li class="nav-item mb-4">
-                        <a href="./inventory-removal.php" class="btn btn-primary">Remove Inventory</a>
-                    </li>
-                    <li class="nav-item mb-4">
-                        <a href="#" class="btn btn-primary">Manage Suppliers</a>
-                    </li>
-                    <li class="nav-item mb-4">
-                        <a href="./Employees.php" class="btn btn-primary">Employees</a>
+                        <a href="#" class="btn btn-primary">Supplier Management</a>
                     </li>
             </ul>
         </div>

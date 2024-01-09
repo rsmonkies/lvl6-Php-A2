@@ -52,14 +52,26 @@ class MemberController {
     }
 
     // Method to delete a member record by its ID
-    public function delete_member(int $id)
-    {
-        // SQL query to delete a member by its ID
-        $sql = "DELETE FROM users WHERE id = :id";
-        $args = ['id' => $id];
-        // Execute the query
-        return $this->db->runSQL($sql, $args)->execute();
+public function delete_member(int $id)
+{
+    // Retrieve the user roles associated with the user
+    $userRoles = $this->getUserRoles($id);
+
+    // Delete user roles first
+    foreach ($userRoles as $role) {
+        $this->db->runSQL("DELETE FROM user_roles WHERE user_id = :userId AND role_id = :roleId", [
+            'userId' => $id,
+            'roleId' => $role['role_id']
+        ])->execute();
     }
+
+    // Now, delete the user from the users table
+    $sql = "DELETE FROM users WHERE id = :id";
+    $args = ['id' => $id];
+    
+    // Execute the query
+    return $this->db->runSQL($sql, $args)->execute();
+}
 
     // Method to register a new member
     public function register_member(array $member)
@@ -97,15 +109,16 @@ class MemberController {
         return false;
     }
 
-    public function getUserRoles($userId) {
-        // Retrieve user roles from the database based on the user ID
-        $stmt = $this->db->prepare("SELECT roles.name FROM roles INNER JOIN user_roles ON roles.id = user_roles.role_id WHERE user_roles.user_id = :userId");
-        $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
-        $stmt->execute();
-        $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    public function getUserRoles($userId)
+{
+    // Retrieve user roles from the database based on the user ID
+    $stmt = $this->db->prepare("SELECT user_roles.role_id FROM user_roles WHERE user_roles.user_id = :userId");
+    $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
+    $stmt->execute();
+    $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        return $roles;
-    }
+    return $roles;
+}
 
     public function get_all_members_with_roles()
 {

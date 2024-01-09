@@ -17,7 +17,38 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])
     exit;
 }
 ?>
-
+<style>
+    /* Custom styles for the navigation column */
+    .nav-column {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        height: 100%; /* Set the height to 100% */
+    }
+</style>
+<?php  if ($_SESSION['user_type'] === 'admin') {?>
+<div class="container-fluid" style="padding-top: 20px; padding-left: 40px;">
+    <div class="row">
+        <!-- Navigation column -->
+        <div class="col-md-3 nav-column">
+            <ul class="nav flex-column mt-4">
+                <li>
+                    <h3>Admin dashboard - Inventory</h3>
+                    <p>Use these links below for extra features</p>
+                </li>
+                    <li class="nav-item mb-4">
+                        <a href="./edit-inventory.php" class="btn btn-primary">Inventory Management</a>
+                    </li>
+                    <li class="nav-item mb-4">
+                        <a href="./inventory-removal.php" class="btn btn-primary">Remove Inventory</a>
+                    </li>
+                    <li class="nav-item mb-4">
+                        <a href="add-inventory.php" class="btn btn-primary">Add Inventory</a>
+                    </li>
+            </ul>
+        </div>
+        <?php } ?>
 <div class="container mt-4">
     <h2>Remove - Equipment Inventory</h2>
     <table class="table table-striped">
