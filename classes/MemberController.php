@@ -121,6 +121,46 @@ class MemberController {
 }
 
 
+
+
+// Method to register a new member and assign the "employee" role
+public function register_member_with_role(array $member)
+{
+    try {
+        // SQL query to insert a new member record
+        $sql = "INSERT INTO users(firstname, lastname, email, password) 
+                VALUES (:firstname, :lastname, :email, :password)";
+
+        // Execute the query with the provided member data
+        $this->db->runSQL($sql, $member);
+
+        // Retrieve the ID of the newly registered user
+        $userId = $this->db->lastInsertId(); 
+
+        // Assign the "employee" role to the user
+        $roleId = 2; // "employee" role has role_id: 2
+        $this->assignUserRole($userId, $roleId);
+
+        return true;
+    } catch (PDOException $e) {
+        // Handle specific error codes (like duplicate entry)
+        if ($e->getCode() == 23000) { // Possible duplicate entry
+            return false;
+        }
+        throw $e;
+    }
 }
 
+// Method to assign a role to a user
+public function assignUserRole($userId, $roleId)
+{
+    // SQL query to insert a new user role record
+    $sql = "INSERT INTO user_roles(user_id, role_id) 
+            VALUES (:user_id, :role_id)";
+
+    // Execute the query with the provided user ID and role ID
+    $args = ['user_id' => $userId, 'role_id' => $roleId];
+    $this->db->runSQL($sql, $args);
+}
+}
 ?>
