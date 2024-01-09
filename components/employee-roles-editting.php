@@ -24,7 +24,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'edit' && isset($_GET['id'])) {
                             <h5 class="card-title">Current User Details</h5>
                             <ul class="list-group">
                                 <li class="list-group-item"><strong>ID:</strong> <?= htmlspecialchars($userDetails['ID']) ?></li>
-                                <li class="list-group-item"><strong>Name:</strong> <?= htmlspecialchars($userDetails['firstname']) ?></li>
+                                <li class="list-group-item"><strong>First Name:</strong> <?= htmlspecialchars($userDetails['firstname']) ?></li>
+                                <li class="list-group-item"><strong>Last Name:</strong> <?= htmlspecialchars($userDetails['lastname']) ?></li>
                                 <li class="list-group-item"><strong>Email:</strong> <?= htmlspecialchars($userDetails['email']) ?></li>
                                 <li class="list-group-item"><strong>Role:</strong> <?= htmlspecialchars($userDetails['role_names'] ?? '') ?></li>
                             </ul>

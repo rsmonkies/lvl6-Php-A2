@@ -22,7 +22,7 @@ require_once './inc/functions.php';
         <div class="col-md-3 nav-column">
             <ul class="nav flex-column mt-4">
                 <li>
-                    <h3>Admin dashboard</h3>
+                    <h3>Admin dashboard - Employees</h3>
                     <p>Use these links below for extra features</p>
                     <p class="text-muted">Access will be denied for regular users</p>
                 </li>
@@ -50,12 +50,13 @@ require_once './inc/functions.php';
                     // Display members with roles data
                     if (!empty($users)) {
                         echo '<table class="table table-striped">';
-                        echo '<thead><tr><th>Id</th><th>Name</th><th>Email</th><th>Roles</th></tr></thead>';
+                        echo '<thead><tr><th>Id</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Roles</th></tr></thead>';
                         echo '<tbody>';
                         foreach ($users as $user) {
                             echo '<tr>';
                             echo '<td>' . htmlspecialchars($user['ID']) . '</td>';
                             echo '<td>' . htmlspecialchars($user['firstname']) . '</td>';
+                            echo '<td>'. htmlspecialchars($user['lastname']) . '</td>';
                             echo '<td>' . htmlspecialchars($user['email']) . '</td>';
                             echo '<td>' . htmlspecialchars($user['role_names']) . '</td>';
                             echo '</tr>';

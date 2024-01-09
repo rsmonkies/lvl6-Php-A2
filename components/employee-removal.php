@@ -37,7 +37,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'remove' && isset($_GET['id'])
         <div class="col-md-3 nav-column">
             <ul class="nav flex-column mt-4">
                 <li>
-                    <h3>Admin dashboard</h3>
+                    <h3>Admin dashboard - Employees</h3>
                     <p>Use these links below for extra features</p>
                     <p class="text-muted">Access will be denied for regular users</p>
                 </li>
@@ -70,7 +70,8 @@ if (isset($_GET['action']) && $_GET['action'] === 'remove' && isset($_GET['id'])
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Name</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
                         <th>Email</th>
                         <th>Roles</th>
                         <th>Action</th>
@@ -81,6 +82,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'remove' && isset($_GET['id'])
                         <tr>
                             <td><?= htmlspecialchars($user['ID']) ?></td>
                             <td><?= htmlspecialchars($user['firstname']) ?></td>
+                            <td><?= htmlspecialchars($user['lastname']) ?></td>
                             <td><?= htmlspecialchars($user['email']) ?></td>
                             <td><?= htmlspecialchars($user['role_names']) ?></td>
                             <td>

@@ -50,7 +50,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])
         </div>
         <?php } ?>
 <div class="container mt-4">
-    <h2>Remove - Equipment Inventory</h2>
+    <h2>Remove - Inventory</h2>
     <table class="table table-striped">
         <thead>
             <tr>

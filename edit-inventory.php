@@ -83,7 +83,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'update') {
         <?php } ?>
 
 <div class="container mt-4">
-    <h2>Edit - Equipment Inventory</h2>
+    <h2>Edit - Inventory</h2>
     <table class="table table-striped">
         <thead>
             <tr>

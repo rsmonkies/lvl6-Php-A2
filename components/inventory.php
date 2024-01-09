@@ -33,7 +33,7 @@ require_once './inc/functions.php';
                         <a href="./Employees.php" class="btn btn-primary">Employee Management</a>
                     </li>
                     <li class="nav-item mb-4">
-                        <a href="#" class="btn btn-primary">Supplier Management</a>
+                        <a href="./Suppliers.php" class="btn btn-primary">Supplier Management</a>
                     </li>
             </ul>
         </div>
