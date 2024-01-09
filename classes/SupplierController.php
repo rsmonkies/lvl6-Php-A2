@@ -49,6 +49,21 @@ class SupplierController {
         return $inventoryStock;
     }
 
+    public function add_item_to_supplier($itemId, $supplierId) {
+        // SQL query to insert data into inv_supplier table
+        $sql = "INSERT INTO inv_supplier (inv_id, sup_id) VALUES (:itemId, :supplierId)";
+    
+        // Prepare the SQL statement
+        $stmt = $this->db->prepare($sql);
+    
+        // Bind parameters
+        $stmt->bindValue(':itemId', $itemId, PDO::PARAM_INT);
+        $stmt->bindValue(':supplierId', $supplierId, PDO::PARAM_INT);
+    
+        // Execute the query
+        return $stmt->execute();
+    }
+
 }
 
 ?>

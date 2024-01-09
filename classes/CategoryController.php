@@ -26,6 +26,21 @@ class CategoryController {
         return $categories;
     }
 
+    public function add_item_to_category($itemId, $categoryId) {
+        // SQL query to insert data into inv_category table
+        $sql = "INSERT INTO inv_category (inventory_id, category_id) VALUES (:itemId, :categoryId)";
+    
+        // Prepare the SQL statement
+        $stmt = $this->db->prepare($sql);
+    
+        // Bind parameters
+        $stmt->bindValue(':itemId', $itemId, PDO::PARAM_INT);
+        $stmt->bindValue(':categoryId', $categoryId, PDO::PARAM_INT);
+    
+        // Execute the query
+        return $stmt->execute();
+    }
+
  
 
 }
