@@ -28,7 +28,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'edit' && isset($_GET['id'])) {
                                 <li class="list-group-item"><strong>Email:</strong> <?= htmlspecialchars($userDetails['email']) ?></li>
                                 <li class="list-group-item"><strong>Role:</strong> <?= htmlspecialchars($userDetails['role_names'] ?? '') ?></li>
                             </ul>
-                        </div>
+                        </div> 
                     </div>
                 </div>
                 <div class="col-md-6">
