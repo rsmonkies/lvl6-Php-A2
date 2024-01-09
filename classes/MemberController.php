@@ -14,13 +14,22 @@ class MemberController {
     }
 
     // Method to retrieve a member record by its ID
-    public function get_member_by_id(int $id)
+    public function get_member_by_id($userId)
     {
-        // SQL query to select a member by its ID
-        $sql = "SELECT * FROM users WHERE id = :id";
-        $args = ['id' => $id];
-        // Execute the query and return the fetched member record
-        return $this->db->runSQL($sql, $args)->fetch();
+        // Retrieve user details and roles from the database based on the user ID
+        $stmt = $this->db->prepare("
+            SELECT users.*, GROUP_CONCAT(roles.name) as role_names
+            FROM users
+            LEFT JOIN user_roles ON users.ID = user_roles.user_id
+            LEFT JOIN roles ON user_roles.role_id = roles.ID
+            WHERE users.ID = :userId
+            GROUP BY users.ID
+        ");
+        $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+        $userDetails = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        return $userDetails;
     }
 
     // Method to retrieve a member record by email
@@ -174,6 +183,18 @@ public function assignUserRole($userId, $roleId)
     // Execute the query with the provided user ID and role ID
     $args = ['user_id' => $userId, 'role_id' => $roleId];
     $this->db->runSQL($sql, $args);
+}
+
+public function update_user_role($userData)
+{
+    // SQL query to update the user role
+    $sql = "UPDATE user_roles 
+            SET role_id = :role_id
+            WHERE user_id = :user_id";
+
+    // Execute the query with the provided user ID and role ID
+    $args = ['user_id' => $userData['id'], 'role_id' => $userData['role_id']];
+    return $this->db->runSQL($sql, $args);
 }
 }
 ?>
