@@ -64,6 +64,21 @@ class SupplierController {
         return $stmt->execute();
     }
 
+    public function delete_supplier(int $supplierId)
+{
+    // Delete entries from inv_supplier table associated with the supplier
+    $this->db->runSQL("DELETE FROM inv_supplier WHERE sup_id = :supplierId", [
+        'supplierId' => $supplierId
+    ])->execute();
+
+    // Now, delete the supplier from the supplier table
+    $sql = "DELETE FROM supplier WHERE id = :supplierId";
+    $args = ['supplierId' => $supplierId];
+    
+    // Execute the query
+    return $this->db->runSQL($sql, $args)->execute();
+}
+
 }
 
 ?>

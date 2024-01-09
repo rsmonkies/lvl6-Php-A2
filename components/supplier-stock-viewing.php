@@ -26,17 +26,17 @@ $SupplierController = $controllers->supplier();
                     <p>Use these links below for extra features</p>
                     <p class="text-muted">Access will be denied for regular users</p>
                 </li>
-                    <li class="nav-item mb-4">
-                        <a href="./Employees.php" class="btn btn-primary">Suppliers List</a>
+                <li class="nav-item mb-4">
+                        <a href="./Suppliers.php" class="btn btn-primary">Suppliers List</a>
                     </li>
                     <li class="nav-item mb-4">
-                        <a href="./Employee-Roles-Edit.php" class="btn btn-primary">Edit Suppliers</a>
+                        <a href="./Suppliers-Edit.php" class="btn btn-primary">Edit Suppliers</a>
                     </li>
                     <li class="nav-item mb-4">
-                        <a href="./Employee-Removal.php" class="btn btn-primary">Add Suppliers</a>
+                        <a href="./Suppliers-Add.php" class="btn btn-primary">Add Suppliers</a>
                     </li>
                     <li class="nav-item mb-4">
-                        <a href="./Employee-Removal.php" class="btn btn-primary">Remove Suppliers</a>
+                        <a href="./Suppliers-Removal.php" class="btn btn-primary">Remove Suppliers</a>
                     </li>
             </ul>
         </div>

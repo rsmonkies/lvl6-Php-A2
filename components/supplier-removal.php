@@ -2,6 +2,20 @@
 // Include the functions file for necessary functions and classes
 require_once './inc/functions.php';
 $SupplierController = $controllers->supplier();
+
+
+// Check for the delete action
+if (isset($_GET['action']) && $_GET['action'] === 'remove' && isset($_GET['id'])) {
+    // Retrieve the id of the equipment to be deleted
+    $supplierId = $_GET['id'];
+
+    // Call a function to handle the deletion
+    $SupplierController->delete_supplier($supplierId);
+
+
+    header('Location: Suppliers.php');
+    exit;
+}
 ?>
 
 <!-- HTML for displaying the general content for all logged-in users -->
@@ -73,7 +87,7 @@ $SupplierController = $controllers->supplier();
                         echo '<td>' . htmlspecialchars($supplier['email']) . '</td>';
                         echo '<td>' . htmlspecialchars($supplier['phoneNumber']) . '</td>';
                         echo '<td>';
-                        echo '<a href="Supplier-Stock-Viewing.php?action=view&id=' . $supplier['id'] . '" class="btn btn-primary btn-sm">View Stock</a>';
+                        echo '<a href="supplier-removal.php?action=remove&id=' . $supplier['id'] . '" class="btn btn-danger btn-sm" onclick="return confirm(\'Are you sure you want to remove this user?\')">Remove</a>';
                         echo '</td>';
                         echo '</tr>';
                     }
