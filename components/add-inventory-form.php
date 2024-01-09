@@ -1,49 +1,43 @@
 <?php
+// Include the functions file for utility functions
 require_once './inc/functions.php';
-$message = '';
-$equipmentController = $controllers->equipment();
 
-// Check for the edit action
-if (isset($_GET['action']) && $_GET['action'] === 'edit' && isset($_GET['id'])) {
-    // Retrieve the id of the equipment to be edited
-    $equipmentId = $_GET['id'];
+// Initialize a variable to store any error message from the query string
+$message = isset($_GET['error']) ? htmlspecialchars($_GET['error']) : '';
 
-    // Redirect to the edit page with the equipment ID
-    header("Location: inventory-editting.php?id=$equipmentId");
-    exit;
-}
-
-// Check if the action is 'update'
-if (isset($_GET['action']) && $_GET['action'] == 'update') {
+// Check if the form is submitted via POST
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Process the submitted form data
-    $id = intval($_POST['id']);
     $name = InputProcessor::processString($_POST['name']);
     $description = InputProcessor::processString($_POST['description']);
     $image = InputProcessor::processString($_POST['image']);
 
-    // Validate inputs
+    // Validate all inputs
     $valid = $name['valid'] && $description['valid'] && $image['valid'];
 
+    // Set an error message if any input is invalid
+    $message = !$valid ? "Please fix the above errors:" : '';
+
+    // If all inputs are valid, proceed with adding equipment
     if ($valid) {
-        // Update the equipment
+        // Prepare the data for adding equipment
         $equipmentData = [
-            'id' => $id,
             'name' => $name['value'],
             'description' => $description['value'],
             'image' => $image['value'],
         ];
 
-        // Ensure that the 'update_equipment' method returns a boolean value indicating success
-        $success = $equipmentController->update_equipment($equipmentData);
+        // Call the create_equipment function to insert data into the database
+        $item = $controllers->equipment()->create_equipment($equipmentData);
 
-        if ($success) {
-            // Redirect or show success message
-            redirect('./Inventory');
+        // Check if the insertion was successful
+        if ($item) {
+            // Redirect or show a success message
+            redirect("./Inventory");
         } else {
-            $message = "Failed to update equipment. Please try again.";
+            // Set error message if adding equipment fails
+            $message = "Failed to add equipment. Please try again.";
         }
-    } else {
-        $message = "Please fix the above errors:";
     }
 }
 ?>
@@ -57,73 +51,77 @@ if (isset($_GET['action']) && $_GET['action'] == 'update') {
         height: 100%; /* Set the height to 100% */
     }
 </style>
+
+<?php if ($_SESSION['user_type'] === 'admin') { ?>
 <div class="container-fluid" style="padding-top: 20px; padding-left: 40px;">
     <div class="row">
         <!-- Navigation column -->
-        <?php if ($_SESSION['user_type'] === 'admin'): ?>
-            <div class="col-md-3 nav-column">
-                <ul class="nav flex-column mt-4">
-                    <li>
-                        <h3>Admin dashboard - Inventory</h3>
-                        <p>Use these links below for extra features</p>
-                    </li>
-                    <li class="nav-item mb-4">
-                        <a href="./edit-inventory.php" class="btn btn-primary">Inventory Management</a>
-                    </li>
-                    <li class="nav-item mb-4">
-                        <a href="./inventory-removal.php" class="btn btn-primary">Remove Inventory</a>
-                    </li>
-                    <li class="nav-item mb-4">
-                        <a href="add-inventory.php" class="btn btn-primary">Add Inventory</a>
-                    </li>
-                </ul>
-            </div>
-        <?php endif; ?>
+        <div class="col-md-3 nav-column">
+            <ul class="nav flex-column mt-4">
+                <li>
+                    <h3>Admin dashboard - Inventory</h3>
+                    <p>Use these links below for extra features</p>
+                </li>
+                <li class="nav-item mb-4">
+                    <a href="./edit-inventory.php" class="btn btn-primary">Inventory Management</a>
+                </li>
+                <li class="nav-item mb-4">
+                    <a href="./inventory-removal.php" class="btn btn-primary">Remove Inventory</a>
+                </li>
+                <li class="nav-item mb-4">
+                    <a href="add-inventory.php" class="btn btn-primary">Add Inventory</a>
+                </li>
+            </ul>
+        </div>
 
-        <!-- Inventory Form container -->
-        <div class="col-md-9">
-            <!-- HTML form for adding inventory -->
-            <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>">
-                <!-- Form content -->
-                <section class="vh-100">
-                    <div class="container py-5 h-75">
-                        <div class="row d-flex justify-content-center align-items-center h-100">
-                            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                                <div class="card shadow-2-strong" style="border-radius: 1rem;">
-                                    <div class="card-body p-5 text-center">
-                                        <h3 class="mb-2">Add Inventory</h3>
-                                        <!-- name input field -->
-                                        <div class="form-outline mb-4">
-                                            <input required type="text" id="name" name="name" class="form-control form-control-lg" placeholder="Item Name" required value="<?= htmlspecialchars($name['value'] ?? '') ?>"/>
-                                            <!-- Display error message for name -->
-                                            <span class="text-danger"><?= $name['error'] ?? '' ?></span>
+         <!-- HTML form for adding inventory -->
+         <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" class="col-md-9">
+            <!-- Form content -->
+            <section class="vh-100">
+                <div class="container py-5 h-75">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                                <div class="card-body p-5 text-center">
+
+                                    <h3 class="mb-2">Add Inventory</h3>
+                                     <!-- name input field -->
+                                      <div class="form-outline mb-4">
+                                        <input requiredtype="text" id="name" name="name" class="form-control form-control-lg" placeholder="Item Name" required value="<?= htmlspecialchars($name['value'] ?? '') ?>"/>
+                                          <!-- Display error message for name -->
+                                          <span class="text-danger"><?= $email['error'] ?? '' ?></span>
                                         </div>
-                                        <!-- Description input field -->
-                                        <div class="form-outline mb-4">
-                                            <input required type="text" id="description" name="description" class="form-control form-control-lg" placeholder="Description" required value="<?= htmlspecialchars($description['value'] ?? '') ?>"/>
-                                            <!-- Display error message for description -->
-                                            <span class="text-danger"><?= $description['error'] ?? '' ?></span>
+                          
+                                      <!-- Description input field -->
+                                      <div class="form-outline mb-4">
+                                        <input requiredtype="text" id="description" name="description" class="form-control form-control-lg" placeholder="Description" required value="<?= htmlspecialchars($description['value'] ?? '') ?>"/>
+                                          <!-- Display error message for description -->
+                                          <span class="text-danger"><?= $password['error'] ?? '' ?></span>
                                         </div>
+                                        
+
                                         <div class="form-outline mb-4">
-                                            <input required type="text" id="image" name="image" class="form-control form-control-lg" placeholder="Insert image address" required value="<?= htmlspecialchars($image['value'] ?? '') ?>"/>
-                                            <!-- Display error message for image -->
-                                            <span class="text-danger"><?= $image['error'] ?? '' ?></span>
+                                        <input requiredtype="text" id="image" name="image" class="form-control form-control-lg" placeholder="Insert image address" required value="<?= htmlspecialchars($image['value'] ?? '') ?>"/>
+                                          <!-- Display error message for image -->
+                                          <span class="text-danger"><?= $password['error'] ?? '' ?></span>
                                         </div>
-                                        <!-- Submit button -->
-                                        <button class="btn btn-primary btn-lg w-100 mb-4" type="submit">Submit</button>
-                                        <!-- Display message if set -->
-                                        <?php if ($message): ?>
-                                            <div class="alert alert-danger mt-4" role="alert">
-                                                <?= $message ?? '' ?>
-                                            </div>
-                                        <?php endif ?>
-                                    </div>
+
+                                    <!-- Submit button -->
+                                    <button class="btn btn-primary btn-lg w-100 mb-4" type="submit">Submit</button>
+                                    <!-- Display message if set -->
+                                    <?php if ($message): ?>
+                                        <div class="alert alert-danger mt-4" role="alert">
+                                            <?= $message ?? '' ?>
+                                        </div>
+                                    <?php endif ?>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
-            </form>
-        </div>
+                </div>
+            </section>
+        </form>
     </div>
 </div>
+<?php } ?>
