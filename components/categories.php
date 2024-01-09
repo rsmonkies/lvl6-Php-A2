@@ -22,21 +22,21 @@ require_once './inc/functions.php';
         <div class="col-md-3 nav-column">
             <ul class="nav flex-column mt-4">
                 <li>
-                    <h3>Admin dashboard</h3>
+                    <h3>Admin dashboard - Categories</h3>
                     <p>Use these links below for extra features</p>
                     <p class="text-muted">Access will be denied for regular users</p>
                 </li>
                     <li class="nav-item mb-4">
-                        <a href="./edit-inventory.php" class="btn btn-primary">Inventory Management</a>
+                        <a href="./Categories.php" class="btn btn-primary">Categories</a>
                     </li>
                     <li class="nav-item mb-4">
-                        <a href="./Employees.php" class="btn btn-primary">Employee Management</a>
+                        <a href="./Category-Edit.php" class="btn btn-primary">Edit Categories</a>
                     </li>
                     <li class="nav-item mb-4">
-                        <a href="./Suppliers.php" class="btn btn-primary">Supplier Management</a>
+                        <a href="./Category-Add.php" class="btn btn-primary">Add Categories</a>
                     </li>
                     <li class="nav-item mb-4">
-                        <a href="./Categories.php" class="btn btn-primary">Category Management</a>
+                        <a href="./Category-Remove.php" class="btn btn-primary">Remove Categories</a>
                     </li>
             </ul>
         </div>
@@ -45,21 +45,21 @@ require_once './inc/functions.php';
         <!-- Inventory container -->
         <div class="col-md-9">
             <div class="container mt-4">
-                <h2>Inventory</h2>
+                <h2>Categories</h2>
                 <?php
                 // Retrieve all equipment data using the equipment controller
-                $equipment = $controllers->equipment()->get_all_equipments();
+                $category = $controllers->category()->get_all_categories();
 
                 // Display equipment data
-                if (!empty($equipment)) {
+                if (!empty($category)) {
                     echo '<table class="table table-striped">';
-                    echo '<thead><tr><th>Image</th><th>Name</th><th>Description</th></tr></thead>';
+                    echo '<thead><tr><th>Image</th><th>ID</th><th>Name</th></tr></thead>';
                     echo '<tbody>';
-                    foreach ($equipment as $equip) {
+                    foreach ($category as $cat) {
                         echo '<tr>';
-                        echo '<td><img src="' . htmlspecialchars($equip['image']) . '" alt="Image of ' . htmlspecialchars($equip['description']) . '" style="width: 100px; height: auto;"></td>';
-                        echo '<td>' . htmlspecialchars($equip['name']) . '</td>';
-                        echo '<td>' . htmlspecialchars($equip['description']) . '</td>';
+                        echo '<td><img src="' . htmlspecialchars($cat['image']) . '" alt="Image of ' . htmlspecialchars($cat['name']) . '" style="width: 100px; height: auto;"></td>';
+                        echo '<td>' . htmlspecialchars($cat['id']) . '</td>';
+                        echo '<td>' . htmlspecialchars($cat['name']) . '</td>';
                         echo '</tr>';
                     }
                     echo '</tbody></table>';
