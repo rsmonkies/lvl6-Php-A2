@@ -79,6 +79,24 @@ class SupplierController {
     return $this->db->runSQL($sql, $args)->execute();
 }
 
+public function add_supplier($supName, $email, $phoneNumber) {
+    // SQL query to insert a new supplier
+    $sql = "INSERT INTO supplier (supName, email, phoneNumber) VALUES (:supName, :email, :phoneNumber)";
+    
+    // Bind parameters
+    $args = [
+        'supName' => $supName,
+        'email' => $email,
+        'phoneNumber' => $phoneNumber
+    ];
+
+    // Execute the query
+    $this->db->runSQL($sql, $args)->execute();
+    
+    // Return the ID of the newly added supplier
+    return $this->db->lastInsertId();
+}
+
 }
 
 ?>

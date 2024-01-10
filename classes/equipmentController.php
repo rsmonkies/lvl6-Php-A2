@@ -55,16 +55,40 @@ class equipmentController {
         return $this->db->runSQL($sql, $equipment)->execute();
     }
 
-    // Function to delete a specific equipment entry by its ID
-    public function delete_equipment(int $id)
-    {
-        // SQL query to delete equipment data by ID
-        $sql = "DELETE FROM equipments WHERE id = :id";
-        $args = ['id' => $id];
-        
-        // Execute the delete query
-        return $this->db->runSQL($sql, $args)->execute();
+   // Function to delete a specific equipment entry by its ID
+public function delete_equipment(int $id)
+{
+    try {
+        // Start a transaction
+        $this->db->beginTransaction();
+
+        // Step 1: Delete entries from inv_category
+        $sqlCategory = "DELETE FROM inv_category WHERE inventory_id = :id";
+        $argsCategory = ['id' => $id];
+        $this->db->runSQL($sqlCategory, $argsCategory)->execute();
+
+        // Step 2: Delete entries from inv_supplier
+        $sqlSupplier = "DELETE FROM inv_supplier WHERE inv_id = :id";
+        $argsSupplier = ['id' => $id];
+        $this->db->runSQL($sqlSupplier, $argsSupplier)->execute();
+
+        // Step 3: Delete the equipment entry
+        $sqlEquipment = "DELETE FROM equipments WHERE id = :id";
+        $argsEquipment = ['id' => $id];
+        $this->db->runSQL($sqlEquipment, $argsEquipment)->execute();
+
+        // Commit the transaction
+        $this->db->commit();
+
+        return true; // Return true on success
+    } catch (PDOException $e) {
+        // Roll back the transaction on failure
+        $this->db->rollBack();
+
+        // Log or handle the exception as needed
+        return false; // Return false on failure
     }
+}
 
 }
 

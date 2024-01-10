@@ -119,15 +119,20 @@ public function delete_member(int $id)
     }
 
     public function getUserRoles($userId)
-{
-    // Retrieve user roles from the database based on the user ID
-    $stmt = $this->db->prepare("SELECT user_roles.role_id FROM user_roles WHERE user_roles.user_id = :userId");
-    $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
-    $stmt->execute();
-    $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    return $roles;
-}
+    {
+        // Retrieve user roles with role names from the database based on the user ID
+        $stmt = $this->db->prepare("
+            SELECT roles.id, roles.name
+            FROM user_roles
+            INNER JOIN roles ON user_roles.role_id = roles.id
+            WHERE user_roles.user_id = :userId
+        ");
+        $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+        $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        return $roles;
+    }
 
     public function get_all_members_with_roles()
 {

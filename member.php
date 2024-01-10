@@ -12,5 +12,6 @@
 ?>
 
 <h1>Welcome <?= $_SESSION['user']['firstname'] ?? 'Member' ?>!</h1>
+<p><?php echo $_SESSION['user_type'];?></p>
 
 <?php require __DIR__ . "/inc/footer.php"; ?>

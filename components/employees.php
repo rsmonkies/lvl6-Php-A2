@@ -27,7 +27,7 @@ require_once './inc/functions.php';
                     <p class="text-muted">Access will be denied for regular users</p>
                 </li>
                     <li class="nav-item mb-4">
-                        <a href="./Employees.php.php" class="btn btn-primary">Employee List</a>
+                        <a href="./Employees.php" class="btn btn-primary">Employee List</a>
                     </li>
                     <li class="nav-item mb-4">
                         <a href="./Employee-Roles-Edit.php" class="btn btn-primary">Edit Employee Roles</a>
