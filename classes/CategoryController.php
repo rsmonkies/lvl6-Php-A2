@@ -74,6 +74,35 @@ class CategoryController {
         return $this->db->lastInsertId();
     }
 
+    public function update_category($categoryId, $name, $image)
+{
+    // SQL query to update category data
+    $sql = "UPDATE category SET name = :name, image = :image WHERE id = :id";
+    
+    // Bind parameters
+    $args = [
+        'id' => $categoryId,
+        'name' => $name,
+        'image' => $image,
+
+    ];
+
+    // Execute the query
+    $this->db->runSQL($sql, $args)->execute();
+    
+    // Return the ID of the updated category
+    return $categoryId;
+}
+
+public function get_category_by_id(int $categoryId)
+{
+    // SQL query to select category data by ID
+    $sql = "SELECT * FROM category WHERE id = :categoryId";
+    $args = ['categoryId' => $categoryId];
+    
+    // Execute the query and return the result
+    return $this->db->runSQL($sql, $args)->fetch(PDO::FETCH_ASSOC);
+}
  
 
 }

@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <div class="card shadow-2-strong" style="border-radius: 1rem;">
                                     <div class="card-body p-5 text-center">
 
-                                        <h3 class="mb-2">Add Categoryr</h3>
+                                        <h3 class="mb-2">Add Category</h3>
 
                                           <!-- Category name input field -->
                                             <div class="form-outline mb-4">
