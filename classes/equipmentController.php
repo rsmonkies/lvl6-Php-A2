@@ -90,6 +90,19 @@ public function delete_equipment(int $id)
     }
 }
 
+// Function to retrieve all equipment entries from the database with category name
+public function get_all_equipments_with_category()
+{
+    // SQL query to select all equipment data with category name
+    $sql = "SELECT equipments.*, category.name AS category_name
+            FROM equipments
+            LEFT JOIN inv_category ON equipments.id = inv_category.inventory_id
+            LEFT JOIN category ON inv_category.category_id = category.id";
+    
+    // Execute the query and return all results
+    return $this->db->runSQL($sql)->fetchAll();
+}
+
 }
 
 ?>

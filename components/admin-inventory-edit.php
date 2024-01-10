@@ -21,7 +21,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'edit' && isset($_GET['id'])) {
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Current Equipment Details</h5>
+                            <h5 class="card-title">Current Inventory Details</h5>
                             <ul class="list-group">
                                 <li class="list-group-item"><strong>Name:</strong> <?= htmlspecialchars($equipmentDetails['name']) ?></li>
                                 <li class="list-group-item"><strong>Description:</strong> <?= htmlspecialchars($equipmentDetails['description']) ?></li>
@@ -33,7 +33,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'edit' && isset($_GET['id'])) {
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Edit Equipment</h5>
+                            <h5 class="card-title">Edit Inventory</h5>
 
                             <!-- Display any error messages here -->
                             <?php if ($message): ?>

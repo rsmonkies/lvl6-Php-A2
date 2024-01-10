@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <a href="./Suppliers-Add.php" class="btn btn-primary">Add Suppliers</a>
                     </li>
                     <li class="nav-item mb-4">
-                        <a href="./Suppliers-Removal.php" class="btn btn-primary">Remove Suppliers</a>
+                        <a href="./Supplier-Removal.php" class="btn btn-primary">Remove Suppliers</a>
                     </li>
             </ul>
         </div>

@@ -97,6 +97,37 @@ public function add_supplier($supName, $email, $phoneNumber) {
     return $this->db->lastInsertId();
 }
 
+public function update_supplier($supplierId, $supName, $email, $phoneNumber)
+{
+    // SQL query to update supplier data
+    $sql = "UPDATE supplier SET supName = :supName, email = :email, phoneNumber = :phoneNumber WHERE id = :id";
+    
+    // Bind parameters
+    $args = [
+        'id' => $supplierId,
+        'supName' => $supName,
+        'email' => $email,
+        'phoneNumber' => $phoneNumber
+    ];
+
+    // Execute the query
+    $this->db->runSQL($sql, $args)->execute();
+    
+    // Return the ID of the updated supplier
+    return $supplierId;
+}
+
+  // Function to retrieve a specific supplier by its ID
+  public function get_supplier_by_id(int $id)
+  {
+      // SQL query to select supplier data by ID
+      $sql = "SELECT * FROM supplier WHERE id = :id";
+      $args = ['id' => $id];
+      
+      // Execute the query and return the result
+      return $this->db->runSQL($sql, $args)->fetch();
+  }
+
 }
 
 ?>

@@ -47,26 +47,27 @@ require_once './inc/functions.php';
             <div class="container mt-4">
                 <h2>Inventory</h2>
                 <?php
-                // Retrieve all equipment data using the equipment controller
-                $equipment = $controllers->equipment()->get_all_equipments();
+                    // Retrieve all equipment data with category name using the modified function
+                    $equipmentWithCategory = $controllers->equipment()->get_all_equipments_with_category();
 
-                // Display equipment data
-                if (!empty($equipment)) {
-                    echo '<table class="table table-striped">';
-                    echo '<thead><tr><th>Image</th><th>Name</th><th>Description</th></tr></thead>';
-                    echo '<tbody>';
-                    foreach ($equipment as $equip) {
-                        echo '<tr>';
-                        echo '<td><img src="' . htmlspecialchars($equip['image']) . '" alt="Image of ' . htmlspecialchars($equip['description']) . '" style="width: 100px; height: auto;"></td>';
-                        echo '<td>' . htmlspecialchars($equip['name']) . '</td>';
-                        echo '<td>' . htmlspecialchars($equip['description']) . '</td>';
-                        echo '</tr>';
+                    // Display equipment data
+                    if (!empty($equipmentWithCategory)) {
+                        echo '<table class="table table-striped">';
+                        echo '<thead><tr><th>Image</th><th>Name</th><th>Description</th><th>Category</th></tr></thead>';
+                        echo '<tbody>';
+                        foreach ($equipmentWithCategory as $equip) {
+                            echo '<tr>';
+                            echo '<td><img src="' . htmlspecialchars($equip['image']) . '" alt="Image of ' . htmlspecialchars($equip['description']) . '" style="width: 100px; height: auto;"></td>';
+                            echo '<td>' . htmlspecialchars($equip['name']) . '</td>';
+                            echo '<td>' . htmlspecialchars($equip['description']) . '</td>';
+                            echo '<td>' . htmlspecialchars($equip['category_name']) . '</td>';
+                            echo '</tr>';
+                        }
+                        echo '</tbody></table>';
+                    } else {
+                        echo '<p>No inventory available.</p>';
                     }
-                    echo '</tbody></table>';
-                } else {
-                    echo '<p>No inventory available.</p>';
-                }
-                ?>
+                    ?>
             </div>
         </div>
     </div>
