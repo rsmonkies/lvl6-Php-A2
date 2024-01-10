@@ -2,6 +2,20 @@
 // Include the functions file for necessary functions and classes
 require_once './inc/functions.php';
 
+$CategoryController = $controllers->category();
+
+// Check for the delete action
+if (isset($_GET['action']) && $_GET['action'] === 'remove' && isset($_GET['id'])) {
+    // Retrieve the id of the equipment to be deleted
+    $catId = $_GET['id'];
+
+    // Call a function to handle the deletion
+    $CategoryController->delete_category($catId);
+
+
+    header('Location: Categories.php');
+    exit;
+}
 ?>
 
 <!-- HTML for displaying the general content for all logged-in users -->
@@ -56,13 +70,14 @@ require_once './inc/functions.php';
                 // Display equipment data
                 if (!empty($category)) {
                     echo '<table class="table table-striped">';
-                    echo '<thead><tr><th>Image</th><th>ID</th><th>Name</th></tr></thead>';
+                    echo '<thead><tr><th>Image</th><th>ID</th><th>Name</th><th>Remove</th></tr></thead>';
                     echo '<tbody>';
                     foreach ($category as $cat) {
                         echo '<tr>';
                         echo '<td><img src="' . htmlspecialchars($cat['image']) . '" alt="Image of ' . htmlspecialchars($cat['name']) . '" style="width: 100px; height: auto;"></td>';
                         echo '<td>' . htmlspecialchars($cat['id']) . '</td>';
                         echo '<td>' . htmlspecialchars($cat['name']) . '</td>';
+                        echo '<td><a href="category-remove.php?action=remove&id=' . $cat['id'] . '" class="btn btn-danger btn-sm" onclick="return confirm(\'Are you sure you want to remove this Category?\')">Remove</a></td>';
                         echo '</tr>';
                     }
                     echo '</tbody></table>';

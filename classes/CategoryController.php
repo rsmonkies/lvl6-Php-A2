@@ -41,6 +41,39 @@ class CategoryController {
         return $stmt->execute();
     }
 
+    public function delete_category(int $catId)
+    {
+        // Delete entries from inv_category table associated with the category
+        $this->db->runSQL("DELETE FROM inv_category WHERE category_id = :catId", [
+            'catId' => $catId
+        ])->execute();
+    
+        // Now, delete the Category from the category table
+        $sql = "DELETE FROM category WHERE id = :catId";
+        $args = ['catId' => $catId];
+        
+        // Execute the query
+        return $this->db->runSQL($sql, $args)->execute();
+    }
+
+    public function add_category($name, $image) {
+        // SQL query to insert a new category
+        $sql = "INSERT INTO category (name, image) VALUES (:name, :image)";
+        
+        // Bind parameters
+        $args = [
+            'name' => $name,
+            'image' => $image,
+
+        ];
+    
+        // Execute the query
+        $this->db->runSQL($sql, $args)->execute();
+        
+        // Return the ID of the newly added category
+        return $this->db->lastInsertId();
+    }
+
  
 
 }

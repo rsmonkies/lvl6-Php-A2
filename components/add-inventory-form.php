@@ -72,6 +72,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <p>Use these links below for extra features</p>
                     </li>
                     <li class="nav-item mb-4">
+                        <a href="./Inventory.php" class="btn btn-primary">Back to Inventory</a>
+                    </li>
+                    <li class="nav-item mb-4">
                         <a href="./edit-inventory.php" class="btn btn-primary">Inventory Management</a>
                     </li>
                     <li class="nav-item mb-4">

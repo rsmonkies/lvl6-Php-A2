@@ -26,6 +26,9 @@ $SupplierController = $controllers->supplier();
                     <p>Use these links below for extra features</p>
                     <p class="text-muted">Access will be denied for regular users</p>
                 </li>
+                <li class="nav-item mb-4">
+                        <a href="./Inventory.php" class="btn btn-primary">Back to Inventory</a>
+                    </li>
                     <li class="nav-item mb-4">
                         <a href="./Suppliers.php" class="btn btn-primary">Suppliers List</a>
                     </li>

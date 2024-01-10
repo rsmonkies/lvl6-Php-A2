@@ -69,6 +69,9 @@ if (isset($_GET['action']) && $_GET['action'] == 'update') {
                     <h3>Admin dashboard - Inventory</h3>
                     <p>Use these links below for extra features</p>
                 </li>
+                <li class="nav-item mb-4">
+                        <a href="./Inventory.php" class="btn btn-primary">Back to Inventory</a>
+                    </li>
                     <li class="nav-item mb-4">
                         <a href="./edit-inventory.php" class="btn btn-primary">Invetory Management</a>
                     </li>
