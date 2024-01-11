@@ -13,7 +13,7 @@ session_start();
        <div class = "">
             <div class="card text-center">
                 <div class="card-body">
-                <h5 class="card-title">Welcome!</h5>
+                <h5 class="card-title">Welcome <?= $_SESSION['user']['firstname'] ?? 'Member' ?>!</h5>
                 <p class="card-text">Welcome to Gormet Grocers inventory management system. Please Log in or register your account</p>
                 <a href="login.php" class="btn btn-primary">Log in/Register</a>
                 </div>
