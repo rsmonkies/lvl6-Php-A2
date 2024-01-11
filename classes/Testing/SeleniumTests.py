@@ -181,8 +181,19 @@ category_add_submit_button.click()
 #Wait for 3 seconds
 time.sleep(3)
 
-
 #---Edit the Category---#
+
+#Navigate to edit category 
+#Find the edit category button
+edit_category_nav_button = driver.find_element(By.CSS_SELECTOR, 'a.btn.btn-primary[href="./Category-Edit.php"]')
+#Click on the edit category button
+edit_category_nav_button.click()
+#Wait for 3 seconds
+time.sleep(3)
+#Find the edit button 
+
+#Wait for 3 seconds
+time.sleep(3)
 
 #---Navigate to Supplier---#
 
