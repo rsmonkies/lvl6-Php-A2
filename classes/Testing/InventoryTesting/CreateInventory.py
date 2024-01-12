@@ -43,6 +43,15 @@ login_account_button.click()
 #Wait for 3 seconds
 time.sleep(3)
 
+#---Navigate to inventory---#
+
+#Find the Inventory Button
+inv_nav_button = driver.find_element(By.CLASS_NAME, 'nav-link[href="./Inventory.php"]')
+#Click the Inventory Button 
+inv_nav_button.click()
+#Wait for 3 seconds
+time.sleep(3)
+
 #---Navigate to inventory management---#
 
 #Click the inventory Management Button
