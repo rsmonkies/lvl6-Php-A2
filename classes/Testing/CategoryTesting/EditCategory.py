@@ -70,9 +70,30 @@ edit_category_nav_button.click()
 #Wait for 3 seconds
 time.sleep(3)
 #Find the edit button 
-
+edit_category_button = driver.find_element(By.XPATH, '/html/body/div/div/div[2]/div/table/tbody/tr[4]/td[4]/a')
 #Wait for 3 seconds
 time.sleep(3)
-
+#Click  on the edit button
+edit_category_button.click()
+#Wait for 3 seconds
+time.sleep(3)
+#This has now taken the user to the editting form
+#Category name input form 
+cat_name_input = driver.find_element(By.ID, 'name')
+#Clear the input field before adding new input
+cat_name_input.clear()
+#Wait for 3 seconds
+time.sleep(3)
+#Input a new name #Original name was selEnIum
+cat_name_input.send_keys('Selenium')
+#Wait for 3 seconds
+time.sleep(3)
+#Click update category button
+update_category_button = driver.find_element(By.CLASS_NAME, 'btn.btn-success')
+#Click on update category button
+update_category_button.click()
+#Will be redirected to Category with an Updated name
+#Wait for 3 seconds
+time.sleep(3)
 #Will always be the last thing the driver does 
 driver.quit()
