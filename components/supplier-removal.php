@@ -76,7 +76,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'remove' && isset($_GET['id'])
                     <th>Supplier Name</th>
                     <th>Email</th>
                     <th>Phone Number</th>
-                    <th>Stock we get</th>
+                    <th>Remove</th>
                 </tr>
             </thead>
             <tbody>
