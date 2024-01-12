@@ -76,7 +76,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])
                     <td><?= htmlspecialchars($equip['name']) ?></td>
                     <td><?= htmlspecialchars($equip['description']) ?></td>
                     <td>
-                     <a href="inventory-removal.php?action=delete&id=<?= $equip['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to removeS this item?')">Remove</a>
+                     <a href="inventory-removal.php?action=delete&id=<?= $equip['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to remove this item?')">Remove</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

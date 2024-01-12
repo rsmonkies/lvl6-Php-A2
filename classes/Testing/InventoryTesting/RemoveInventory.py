@@ -42,5 +42,44 @@ login_account_button.click()
 #Wait for 3 seconds
 time.sleep(3)
 
+#---Navigate to inventory---#
+
+#Find the Inventory Button
+inv_nav_button = driver.find_element(By.CLASS_NAME, 'nav-link[href="./Inventory.php"]')
+#Click the Inventory Button 
+inv_nav_button.click()
+#Wait for 3 seconds
+time.sleep(3)
+
+#---Navigate to inventory management---#
+
+#Find the inventory management Button 
+inv_management_nav_button = driver.find_element(By.CSS_SELECTOR, 'a.btn.btn-primary[href="./edit-inventory.php"]')
+#Click the inventory management Button
+inv_management_nav_button.click()
+#Wait for 3 seconds
+time.sleep(3)
+
+#---Remove a piece of inventory---#
+
+#Navigate to remove a piece of inventory
+inv_remove_button = driver.find_element(By.CSS_SELECTOR, 'a.btn.btn-primary[href="./inventory-removal.php"]')
+#Click inventory Remove button
+inv_remove_button.click()
+#Wait for 3 seconds
+time.sleep(3)
+#Click remove on the item
+remove_inv = driver.find_element(By.XPATH, '/html/body/div/div/div[2]/table/tbody/tr[4]/td[4]/a')
+remove_inv.click()
+#Wait for 3 seconds
+time.sleep(3)
+#Click confirm on the pop up 
+# Switch to the alert
+alert = driver.switch_to.alert
+# Accept the alert (click "OK")
+alert.accept()
+#Wait for 3 seconds
+time.sleep(3)
+
 #Will always be the last thing the driver does 
 driver.quit()
