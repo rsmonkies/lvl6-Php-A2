@@ -42,5 +42,43 @@ login_account_button.click()
 #Wait for 3 seconds
 time.sleep(3)
 
+#---Navigate to inventory---#
+
+#Find the Inventory Button
+inv_nav_button = driver.find_element(By.CLASS_NAME, 'nav-link[href="./Inventory.php"]')
+#Click the Inventory Button 
+inv_nav_button.click()
+#Wait for 3 seconds
+time.sleep(3)
+
+#---Navigate to Employee Management---#
+
+#Find the Employee Management Button 
+employee_nav_button = driver.find_element(By.CSS_SELECTOR, 'a.btn.btn-primary[href="./Employees.php"]')
+#Click the Employee Management Button Button
+employee_nav_button.click()
+#Wait for 3 seconds
+time.sleep(3)
+
+#---Remove the Employee---#
+#Navigate to remove an employee
+employee_remove_button = driver.find_element(By.CSS_SELECTOR, 'a.btn.btn-primary[href="./Employee-Removal.php"]')
+#Click Employee Remove button
+employee_remove_button.click()
+#Wait for 3 seconds
+time.sleep(3)
+#Click remove on the employee
+remove_employee = driver.find_element(By.XPATH, '/html/body/div/div/div[2]/div/table/tbody/tr[3]/td[6]/a')
+remove_employee.click()
+#Wait for 3 seconds
+time.sleep(3)
+#Click confirm on the pop up 
+# Switch to the alert
+alert = driver.switch_to.alert
+# Accept the alert (click "OK")
+alert.accept()
+#Wait for 3 seconds
+time.sleep(3)
+
 #Will always be the last thing the driver does 
 driver.quit()

@@ -60,7 +60,7 @@ class MemberController {
         return $this->db->runSQL($sql, $member)->execute();
     }
 
-    // Method to delete a member record by its ID
+// Method to delete a member record by its ID
 public function delete_member(int $id)
 {
     // Retrieve the user roles associated with the user
@@ -68,16 +68,18 @@ public function delete_member(int $id)
 
     // Delete user roles first
     foreach ($userRoles as $role) {
-        $this->db->runSQL("DELETE FROM user_roles WHERE user_id = :userId AND role_id = :roleId", [
-            'userId' => $id,
-            'roleId' => $role['role_id']
-        ])->execute();
+        if (isset($role['user_id'], $role['role_id'])) {
+            $this->db->runSQL("DELETE FROM user_roles WHERE user_id = :userId AND role_id = :roleId", [
+                'userId' => $role['user_id'],
+                'roleId' => $role['role_id']
+            ])->execute();
+        }
     }
 
     // Now, delete the user from the users table
     $sql = "DELETE FROM users WHERE id = :id";
     $args = ['id' => $id];
-    
+
     // Execute the query
     return $this->db->runSQL($sql, $args)->execute();
 }
