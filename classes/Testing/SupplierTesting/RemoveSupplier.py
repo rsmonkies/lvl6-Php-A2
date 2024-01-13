@@ -42,5 +42,44 @@ login_account_button.click()
 #Wait for 3 seconds
 time.sleep(3)
 
+#---Navigate to inventory---#
+
+#Find the Inventory Button
+inv_nav_button = driver.find_element(By.CLASS_NAME, 'nav-link[href="./Inventory.php"]')
+#Click the Inventory Button 
+inv_nav_button.click()
+#Wait for 3 seconds
+time.sleep(3)
+
+#---Navigate to supplier management---#
+
+#Find the supplier management Button 
+supplier_management_nav_button = driver.find_element(By.CSS_SELECTOR, 'a.btn.btn-primary[href="./Suppliers.php"]')
+#Click the supplier management Button
+supplier_management_nav_button.click()
+#Wait for 3 seconds
+time.sleep(3)
+
+#---Remove a supplier---#
+
+#Navigate to remove a supplier
+supplier_remove_button = driver.find_element(By.CSS_SELECTOR, 'a.btn.btn-primary[href="./Supplier-Removal.php"]')
+#Click supplier Remove button
+supplier_remove_button.click()
+#Wait for 3 seconds
+time.sleep(3)
+#Click remove on the supplier
+remove_supplier = driver.find_element(By.XPATH, '/html/body/div/div/div[2]/div/table/tbody/tr[3]/td[5]/a')
+remove_supplier.click()
+#Wait for 3 seconds
+time.sleep(3)
+#Click confirm on the pop up 
+# Switch to the alert
+alert = driver.switch_to.alert
+# Accept the alert (click "OK")
+alert.accept()
+#Wait for 3 seconds
+time.sleep(3)
+
 #Will always be the last thing the driver does 
 driver.quit()
