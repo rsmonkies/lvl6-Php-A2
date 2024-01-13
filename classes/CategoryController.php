@@ -68,7 +68,7 @@ class CategoryController {
         ];
     
         // Execute the query
-        $this->db->runSQL($sql, $args)->execute();
+        $this->db->runSQL($sql, $args);
         
         // Return the ID of the newly added category
         return $this->db->lastInsertId();

@@ -91,7 +91,7 @@ public function add_supplier($supName, $email, $phoneNumber) {
     ];
 
     // Execute the query
-    $this->db->runSQL($sql, $args)->execute();
+    $this->db->runSQL($sql, $args);
     
     // Return the ID of the newly added supplier
     return $this->db->lastInsertId();

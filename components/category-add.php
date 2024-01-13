@@ -82,6 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php } ?>
 
             <!-- HTML form for adding categories -->
+            <?php if ($_SESSION['user_type'] === 'admin') {?>
             <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" class="col-md-9">
                 <!-- Form content -->
                 <section class="vh-100">
@@ -128,3 +129,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </form>
         </div>
     </div>
+    <?php } ?>
