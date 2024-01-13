@@ -84,9 +84,9 @@ time.sleep(3)
 
 #---submit---#
 #Click update item button
-update_category_button = driver.find_element(By.CLASS_NAME, 'btn.btn-success')
+update_item_button = driver.find_element(By.CLASS_NAME, 'btn.btn-success')
 #Click on update item button
-update_category_button.click()
+update_item_button.click()
 #Will be redirected to Inventory with an Updated name
 #Wait for 3 seconds
 time.sleep(3)
