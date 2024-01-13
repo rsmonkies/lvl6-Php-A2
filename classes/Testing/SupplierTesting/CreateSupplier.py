@@ -42,5 +42,68 @@ login_account_button.click()
 #Wait for 3 seconds
 time.sleep(3)
 
+#---Navigate to inventory---#
+
+#Find the Inventory Button
+inv_nav_button = driver.find_element(By.CLASS_NAME, 'nav-link[href="./Inventory.php"]')
+#Click the Inventory Button 
+inv_nav_button.click()
+#Wait for 3 seconds
+time.sleep(3)
+
+#---Navigate to supplier management---#
+
+#Click the supplier Management Button
+supplier_management_nav_button = driver.find_element(By.CSS_SELECTOR, 'a.btn.btn-primary[href="./Suppliers.php"]')
+#Click on the button
+supplier_management_nav_button.click()
+#Wait for 3 seconds
+time.sleep(3)
+
+#---Navigate to Supplier add---#
+
+#Click the Supplier add Button
+supplier_add_management_nav_button = driver.find_element(By.CSS_SELECTOR, 'a.btn.btn-primary[href="./Suppliers-Add.php"]')
+#Click on the button
+supplier_add_management_nav_button.click()
+#Wait for 3 seconds
+time.sleep(3)
+
+#---Input supplier Name---#
+#supplier name input field 
+#find the element by its id
+name_input = driver.find_element(By.ID, 'supName')
+#Input a value into the name text box
+name_input.send_keys('A Company')
+#Wait for 3 seconds
+time.sleep(3)
+
+#---Input supplier email---#
+#supplier email input field 
+#find the element by its id
+email_input = driver.find_element(By.ID, 'email')
+#Input a value into the email text box
+email_input.send_keys('acompany@gmail.cm')
+#Wait for 3 seconds
+time.sleep(3)
+
+#---Input supplier phone number---#
+#supplier phone number input field 
+#find the element by its id
+number_input = driver.find_element(By.ID, 'phoneNumber')
+#Input a value into the name text box
+number_input.send_keys('12345678912')
+#Wait for 3 seconds
+time.sleep(3)
+
+#---submit---#
+#Click the submit button
+submit_supplier_add = driver.find_element(By.CLASS_NAME, 'btn.btn-primary.btn-lg.w-100.mb-4')
+submit_supplier_add.click()
+#Should redirect to Suppliers.php
+#Wait for 3 seconds
+time.sleep(3)
+
+
 #Will always be the last thing the driver does 
 driver.quit()
