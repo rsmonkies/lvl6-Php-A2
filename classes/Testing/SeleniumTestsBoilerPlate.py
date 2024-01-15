@@ -43,58 +43,5 @@ login_account_button.click()
 time.sleep(3)
 
 
-#---Navigate to Supplier---#
-
-#---Create a Supplier---#
-
-#---Edit the Supplier---#
-
-#---Navigate to Inventory Management---#
-
-#---Create a piece of Invenotry---#
-
-#---Edit that inventory---#
-
-#---Navigate to Supplier to check the stock has been added---#
-
-#---Navigate to Inventory Management---#
-
-#---Remove that inventory---#
-
-#---Navigate to Supplier---#
-
-#---Remove Supplier---#
-
-#---Navigate to Category---#
-
-#---Remove Category---#
-
-#---Navigate to Employee Management---#
-
-#---Edit Role for Selenium Account to be Admin---#
-
-#---Log out of Admin Account---#
-
-#---Log in with selenium account---#
-
-#---Navigate to inventory---#
-#Check that the Admin dashboard is there
-
-#---Log out of selenium account---#
-
-#---Log in with Admin Account---#
-
-#---Navigate to Employee Management---#
-
-#---Edit Role of Selenium back to Employee---#
-
-#---Remove Selenium Account---#
-
-#---Log out---#
-
-#---Try Log in with selenium account---#
-
-
-
 #Will always be the last thing the driver does 
 driver.quit()
